@@ -42,10 +42,9 @@ const Login = () => {
                 required
                 />
                 <div className="box_btns">
-                    <Link to='/'>
+                    <Link to='/homepage'>
                 <button className="box_btn1"
                 onClick={
-                // e.preventDefault()
                 handleLogin()
                 }
                 >Authorization</button>

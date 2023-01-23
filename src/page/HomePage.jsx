@@ -9,7 +9,7 @@ const HomePage = () => {
 
     const getTodos = () => {
         API.getTodos(accessToken)
-        .then(res => res.todos && setData(res.todos))  
+        .then(res => res.data && setData(res.data))  
     }
 
     useEffect(() => {
@@ -18,8 +18,7 @@ const HomePage = () => {
 
     return (
         <div>
-            <h6>Count: {data.length}</h6>
-
+            <h6 className='count'>Count: {data.length}</h6>
             {data &&
             data.map((data,id) => (
                 <Card  key={id} {...data} get={getTodos}/>

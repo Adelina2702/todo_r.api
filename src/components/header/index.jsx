@@ -7,7 +7,7 @@ import './header.scss'
 
 const Header = () => {
     const [toggleSwitch, setToggleSwitch] = useState(false);
-    const users = localStorage.getItem('accessToken')
+    const user = localStorage.getItem('accessToken')
     // const refreshToken = localStorage.getItem('refreshToken')
 
     const navigate = useNavigate()
@@ -15,13 +15,13 @@ const Header = () => {
     const handleLogOut = () => {
         localStorage.clear()
         setToggleSwitch(false)
-        navigate('/login')
+        navigate('/')
     }
 
     return (
         <div className={toggleSwitch ? 'nav active' : "nav"}>
         <nav className='header_container'>
-            <Link to='/'>
+            <Link to='/homepage'>
         <div className='navbar'>
                 TODO API
         </div>
@@ -51,9 +51,8 @@ const Header = () => {
             </div>
         </div>
     }
-
             {
-            users ? (
+            user ? (
             <div className='header__burger'>
                 <img className='admin__btn' onClick={() => setToggleSwitch(prev => !prev)} src={Burger} alt="" />
             </div>

@@ -18,7 +18,7 @@ const AdminPage = () => {
     const handlePost = () => {
         API.postTodo(accessToken, {title, description, date, user})
         setTimeout(() => {
-            navigate('/')
+            navigate('/homepage')
         }, 2000)
     }
 
@@ -49,7 +49,7 @@ const AdminPage = () => {
                 } 
                 }>Add ToDo</button>
                 <div className='box_btn__register'>
-                <Link to='/'>
+                <Link to='/homepage'>
                 <button >Home</button>
                 </Link>
                 </div>

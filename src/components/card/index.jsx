@@ -1,46 +1,40 @@
 import React, { useState } from 'react';
-import {AiFillCheckCircle, AiTwotoneDelete} from "react-icons/ai";
-import {FaEdit} from "react-icons/fa";
 import { API } from '../../Api';
 import './card.scss'
+import Trash from '../../img/trash.png';
+import Edit from '../../img/edit.png';
+// import jwt_decode from "jwt-decode";
 
-const Card = ({title, description, date, id, completed, edited ,get}) =>  {
+const Card = ({title, description, date, id, get}) =>  {
     const [editActive, setEditActive] = useState(false)
     const [newTitle, setNewTitle] = useState('')
     const [newDescription, setNewDescription] = useState('')
+    const [newDate, setNewDate] = useState('')
+    
     
     const accessToken = localStorage.getItem('accessToken')
+    // const decode = jwt_decode(accessToken)
+    // const user = decode.user_id
     
-    const handleEdit = (id) => {
-        API.editTodo(id, accessToken, {
+    const handleEdit = (id, ) => {
+        API.editTodo(id, accessToken,{
         title: newTitle.length === 0 ? title : newTitle,
         description: newDescription.length === 0 ? description : newDescription,
-        }).then(r => r && get())
+        date: newDate.length === 0 ? date : newDate,
+        }).then(res => res && get())
     }
     
-      const handleComplete = (id) => {
-        API.getTodo.then(res => console.log("qw",res.data))
-      }
-    
     const handleDelete = (id) => {
-        API.deleteTodo(id,accessToken).then(r => r && get())
+        API.deleteTodo(id,accessToken).then(res => res && get())
     }
     
     return (
         <div className='card'>
         <div className='card__description'>
-            <div className='card__header'>
             <p className='card__date'>
                 <span>{date}</span>
-                <span>Edited: {edited?.date?.slice(0, 10)}</span>
             </p>
-            
-            <h3>{title}</h3>
-            {
-                completed &&
-                <AiFillCheckCircle/>
-            }
-            </div>
+            <h4>{title}</h4>
             <p className='card__text'>
             {description}
             </p>
@@ -49,28 +43,20 @@ const Card = ({title, description, date, id, completed, edited ,get}) =>  {
             <div className='edit__inputs'>
                 <input type="text" placeholder='title' onChange={e => setNewTitle(e.target.value)}/>
                 <input type="text" placeholder='description' onChange={e => setNewDescription(e.target.value)}/>
+                <input type="date" placeholder='date' onChange={e => setNewDate(e.target.value)}/>
+
                 <div className='change_btn' >
                 <button onClick={() => {
                     handleEdit(id)
                     setEditActive(false)
-                }}>Edit</button>
+                }} className="change_btn__edit">Edit</button>
                 </div>
             </div>
             }
         </div>
         <div className='card__btn'>
-            <button
-            className='delete__btn'
-            onClick={() => handleDelete(id)}
-            >
-            <AiTwotoneDelete/>
-            </button>
-            <button
-            className='edit__btn'
-            onClick={() => setEditActive(prev => !prev)}
-            >
-            <FaEdit/>
-            </button>
+            <img onClick={() => handleDelete(id)} className='delete__btn' src={Trash} alt="" />
+            <img onClick={() => setEditActive(prev => !prev)} className='edit__btn' src={Edit} alt="" />
         </div>
         </div>
     );

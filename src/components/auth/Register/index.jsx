@@ -14,9 +14,6 @@ const Register = () => {
         API.register(userName, email, password).then(response => { setActive(true)
         localStorage.setItem('users' , JSON.stringify(response.data.users))
         localStorage.setItem('isActivated' , response.data.users.isActivated)
-        setTimeout(() => {
-            navigate('/')
-        }, 1000)
     })
     .catch(err => {
         console.log(err.message);
@@ -52,15 +49,17 @@ const Register = () => {
             required
             />
             <div className="box_btns">
+                <Link to='/'>
             <button className="box_btn1" onClick={e => {e.preventDefault()
                 handleRegister()}}>Registration</button>
+                </Link>
                 {
                     active ?
                     <p>An email has been sent to you with a link to activate your account.</p> :
                     null
                 }
             <div className="box_btn__register">
-            <Link to='/login'>
+            <Link to='/'>
             <button>Have already an account?</button>
             </Link>
             </div>

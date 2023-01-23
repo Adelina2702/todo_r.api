@@ -31,14 +31,14 @@ export const API = {
         })
     },
     deleteTodo: (id, accessToken) => {
-        return axios.delete(`${BASE_URL}/todo/${id}`,  {
+        return axios.delete(`${BASE_URL}/todo/${id}/`,  {
         headers: {
             'Authorization':`Bearer ${accessToken}`
         }
         })
     },
     editTodo: (id, accessToken, data) => {
-        return axios.put(`${BASE_URL}/todo/${id}`, data, {
+        return axios.patch(`${BASE_URL}/todo/${id}/`, data, {
         headers: {
             'Authorization': `Bearer ${accessToken}`  
         }
