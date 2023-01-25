@@ -10,8 +10,7 @@ import * as yup from 'yup'
 
 const schema = yup.object().shape({
     title: yup.string().min(3).matches(/^[A-Za-z ]*$/, 'Please enter valid title').max(55).required("Required"),
-    description: yup.string().min(3).required('Required'),
-    date: yup.number().required('Required')
+    description: yup.string().min(3).required('Required')
 })
 const AdminPage = () => {
     const [ title, setTitle ] = useState('')
@@ -57,9 +56,7 @@ const AdminPage = () => {
                 />
                 <p className="title_text">{errors.description?.message}</p>
                 <input type="date" onChange={e => setDate(e.target.value)}
-                {...register('date')}
                 />
-                <p className="title_text">{errors.date?.message}</p>
                 <div className="box_btns">
                 <button className="box_btn1" 
                 type='submit'
