@@ -1,3 +1,4 @@
+import { isDisabled } from '@testing-library/user-event/dist/utils';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { API } from '../../../Api';
@@ -8,6 +9,8 @@ const Login = () => {
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
 
+    const navigate = useNavigate('')
+
 
     const handleLogin = () => {
         if(userName.length !== 0 && password.length !== 0){
@@ -16,8 +19,10 @@ const Login = () => {
                 localStorage.setItem('accessToken', res.data.access)
                 localStorage.setItem('refresh', res.data.refresh)
                 localStorage.setItem('users' , JSON.stringify(res.data.user))
-                localStorage.setItem('isActivated' , res.data.users.isActivated)
                 localStorage.setItem('error', res.data.message)
+                setTimeout(() => {
+                    navigate('/homepage')
+                })
         })
         }
     }
@@ -42,16 +47,14 @@ const Login = () => {
                 required
                 />
                 <div className="box_btns">
-                    <Link to='/homepage'>
-                <button className="box_btn1"
+                <button className="box_btn1" type='button'
                 onClick={
-                handleLogin()
+                handleLogin
                 }
                 >Authorization</button>
-                </Link>
                 <div className='box_btn__register'>
                 <Link to='/register'>
-                <button >Create a new account</button>
+                <button type='button' >Create a new account</button>
                 </Link>
                 </div>
                 </div>

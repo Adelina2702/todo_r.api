@@ -23,6 +23,7 @@ const HomePage = () => {
             data.map((data,id) => (
                 <Card  key={id} {...data} get={getTodos}/>
             ))}
+            
         </div>
     );
 }

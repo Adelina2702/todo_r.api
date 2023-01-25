@@ -21,12 +21,9 @@ const Header = () => {
     return (
         <div className={toggleSwitch ? 'nav active' : "nav"}>
         <nav className='header_container'>
-            <Link to='/homepage'>
         <div className='navbar'>
                 TODO API
         </div>
-        </Link>
-
         {
         toggleSwitch &&
         <div className='header__btn'>
